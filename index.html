@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hourly Performance Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px;">
+
+  <h2 style="text-align: center;">📊 Hourly Performance Dashboard</h2>
+
+  <div id="chart" style="width:100%;height:600px;"></div>
+
+  <script>
+    var hours = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22];
+    var attainment = [69,197,272,348,437,480,487,463,436,473,426,408,473,477,485,443,403];
+    var projected = [81,206,347,410,483,525,537,505,505,519,541,538,510,562,553,473,420];
+    var yesterday = [93,182,277,366,420,502,482,491,468,494,442,446,517,562,591,632,556];
+
+    var trace1 = {
+      x: hours,
+      y: attainment,
+      mode: 'lines+markers',
+      name: 'Attainment',
+      line: {color: 'orange'}
+    };
+
+    var trace2 = {
+      x: hours,
+      y: projected,
+      mode: 'lines+markers',
+      name: 'Projected',
+      line: {dash: 'dash', color: 'blue'}
+    };
+
+    var trace3 = {
+      x: hours,
+      y: yesterday,
+      mode: 'lines+markers',
+      name: "Yesterday's Trend",
+      line: {dash: 'dot', color: 'green'}
+    };
+
+    var layout = {
+      title: "Hourly Orders Comparison",
+      xaxis: {title: 'Hour of Day'},
+      yaxis: {title: 'Orders'},
+      legend: {orientation: 'h', y: -0.2},
+      margin: {t: 50, l: 50, r: 30, b: 70}
+    };
+
+    Plotly.newPlot('chart', [trace1, trace2, trace3], layout);
+  </script>
+
+</body>
+</html>
